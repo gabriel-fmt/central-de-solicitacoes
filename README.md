@@ -8,6 +8,7 @@ MVP web para centralizar e acompanhar solicitações internas entre Comercial e 
 - SQLite
 - HTML e CSS responsivos
 - pytest e GitHub Actions
+- Gunicorn e configuração de deploy no Render
 
 ## Execução local
 
@@ -28,3 +29,7 @@ Execute `pytest -q`. O pipeline de CI repete a suíte em cada push e pull reques
 ## Escopo
 
 RF01 a RF06: cadastro, fila, atualização sequencial de status, consulta do andamento e histórico, além de filtro por status. Integração com ERP, estoque completo, app nativo e modo offline permanecem fora do MVP.
+
+## Produção e monitoramento
+
+O arquivo `render.yaml` descreve o serviço web, instala as dependências, inicializa o banco e executa a aplicação com Gunicorn. O endpoint público `/health` responde em JSON e é utilizado para verificar a disponibilidade do serviço.

@@ -68,6 +68,12 @@ def create_app(test_config=None):
             return redirect(url_for("login"))
         return redirect(url_for("queue" if session["setor"] == "Logística" else "new_request"))
 
+    @app.get("/health")
+    def health():
+        """Endpoint leve usado pelo monitoramento de disponibilidade."""
+        get_db().execute("SELECT 1").fetchone()
+        return {"status": "ok"}, 200
+
     @app.route("/login", methods=("GET", "POST"))
     def login():
         if request.method == "POST":
